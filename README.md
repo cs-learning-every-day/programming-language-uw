@@ -1,5 +1,8 @@
 ## programming languages by 华盛顿大学 Coursera
 
+#### 资料
+- [SML Syntax Cheatsheet](https://smlhelp.github.io/book/index.html)
+
 
 #### 环境安装
 - apt install smlnj mlton polyml
