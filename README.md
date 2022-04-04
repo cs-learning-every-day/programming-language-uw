@@ -4,7 +4,7 @@
 - [SML Syntax Cheatsheet](https://smlhelp.github.io/book/index.html)
 
 
-#### 环境安装
+#### SML 环境安装
 - apt install smlnj mlton polyml
 
 运行
