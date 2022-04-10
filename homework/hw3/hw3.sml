@@ -94,11 +94,11 @@ fun all_answers f lst =
 	end
 
 
-fun count_wildcards p = g (fn () => 1) (fn x => 1) p
+fun count_wildcards p = g (fn () => 1) (fn x => 0) p
 
 fun count_wild_and_variable_lengths p = g (fn () => 1) String.size p
 
-fun count_some_var(str, p) = g (fn () => 1) 
+fun count_some_var(str, p) = g (fn () => 0) 
 	(fn x => if x = str then 1 else 0)
 	p 
 
