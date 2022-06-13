@@ -104,10 +104,11 @@
                                      (closure-env fc))]
                        [fname (fun-nameopt ff)])
                       (if fname
-                        (eval-under-env (fun-body ff) (append (list (cons (fname) fc)) 
+                        (eval-under-env (fun-body ff) (append (list (cons fname fc)) 
                                                               fenv))
                         (eval-under-env (fun-body ff) fenv)))
                 (error "MUPL call first arg is not func")))]
+        [(aunit? e) e]
         [#t (error (format "bad MUPL expression: ~v" e))]))
 
 ;; Do NOT change
@@ -116,19 +117,37 @@
         
 ;; Problem 3
 
-(define (ifaunit e1 e2 e3) "CHANGE")
+(define (ifaunit e1 e2 e3) 
+  (ifeq (isaunit e1) (int 1) e2 e3))
 
-(define (mlet* lstlst e2) "CHANGE")
+(define (mlet* lstlst e2)
+  (if (null? lstlst)
+      e2
+      (let ([kp (car lstlst)])
+          (mlet (car kp) 
+                (cdr kp)
+                (mlet* (cdr lstlst) e2)))))
 
-(define (ifeq e1 e2 e3 e4) "CHANGE")
+(define (ifeq e1 e2 e3 e4)
+  (ifgreater e1 e2 e4  (ifgreater e2 e1 e4 e3))) 
 
 ;; Problem 4
 
-(define mupl-map "CHANGE")
+(define mupl-map 
+  (fun #f "f"
+       (fun #f
+            "lst"
+            (call (fun "helper-f" "ls"
+                       (ifaunit (var "ls")
+                                (var "ls")
+                                (apair (call (var "f") (fst (var "ls")))
+                                       (call (var "helper-f") (snd (var "ls"))))))
+                  (var "lst")))))
 
 (define mupl-mapAddN 
   (mlet "map" mupl-map
-        "CHANGE (notice map is now in MUPL scope)"))
+        (fun #f "x"
+             (call (var "map") (fun #f "y" (add (var "y") (var "x")))))))
 
 ;; Challenge Problem
 
