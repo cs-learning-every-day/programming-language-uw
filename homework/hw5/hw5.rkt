@@ -118,7 +118,7 @@
 ;; Problem 3
 
 (define (ifaunit e1 e2 e3) 
-  (ifeq (isaunit e1) (int 1) e2 e3))
+  (ifgreater (isaunit e1) (int 0) e2 e3))
 
 (define (mlet* lstlst e2)
   (if (null? lstlst)
@@ -129,7 +129,9 @@
                 (mlet* (cdr lstlst) e2)))))
 
 (define (ifeq e1 e2 e3 e4)
-  (ifgreater e1 e2 e4  (ifgreater e2 e1 e4 e3))) 
+  (mlet "_y" e4
+    (ifgreater e1 e2 (var "_y")
+      (mlet "_x" e3 (ifgreater e2 e1 (var "_y") (var "_x"))))))
 
 ;; Problem 4
 
