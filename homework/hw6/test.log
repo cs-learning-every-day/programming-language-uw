@@ -1,0 +1,24 @@
+NoMethodError: undefined method `[]' for nil:NilClass
+---< backtrace of Ruby side >-----
+/home/tesla/cs/programming-language-uw/homework/hw6/hw6assignment.rb:50:in `block in store_current'
+/home/tesla/cs/programming-language-uw/homework/hw6/hw6assignment.rb:48:in `each'
+/home/tesla/cs/programming-language-uw/homework/hw6/hw6assignment.rb:48:in `store_current'
+/home/tesla/cs/programming-language-uw/homework/hw6/hw6provided.rb:193:in `drop_all_the_way'
+/home/tesla/cs/programming-language-uw/homework/hw6/hw6provided.rb:308:in `block in key_bindings'
+/var/lib/gems/2.7.0/gems/tk-0.4.0/lib/tk/event.rb:495:in `eval_cmd'
+/var/lib/gems/2.7.0/gems/tk-0.4.0/lib/tk/event.rb:495:in `block in install_bind_for_event_class'
+/var/lib/gems/2.7.0/gems/tk-0.4.0/lib/tk.rb:1430:in `eval_cmd'
+/var/lib/gems/2.7.0/gems/tk-0.4.0/lib/tk.rb:1430:in `cb_eval'
+/var/lib/gems/2.7.0/gems/tk-0.4.0/lib/tk.rb:1385:in `call'
+/var/lib/gems/2.7.0/gems/tk-0.4.0/lib/tk.rb:1582:in `block in callback'
+/var/lib/gems/2.7.0/gems/tk-0.4.0/lib/tk.rb:1581:in `catch'
+/var/lib/gems/2.7.0/gems/tk-0.4.0/lib/tk.rb:1581:in `callback'
+/var/lib/gems/2.7.0/gems/tk-0.4.0/lib/tk.rb:1798:in `mainloop'
+/var/lib/gems/2.7.0/gems/tk-0.4.0/lib/tk.rb:1798:in `mainloop'
+/home/tesla/cs/programming-language-uw/homework/hw6/hw6graphics.rb:106:in `mainLoop'
+hw6runner.rb:13:in `runMyTetris'
+hw6runner.rb:17:in `<main>'
+---< backtrace of Tk side >-------
+    invoked from within
+"rb_out c00013 "
+    (command bound to event)
