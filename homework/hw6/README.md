@@ -1,0 +1,1 @@
+- [Installing Ruby/Tk on Ubuntu](https://dev.to/kojix2/installing-ruby-tk-on-ubuntu-1d86)
