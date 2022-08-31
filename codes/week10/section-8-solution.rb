@@ -19,6 +19,7 @@ class Character
 
   def play_out_encounter enc
     ## YOUR CODE HERE
+    enc.use_in self
   end
 end
 
@@ -33,6 +34,32 @@ class Knight < Character
   end
 
   ## YOUR CODE HERE
+  def damage(dam)
+    if @ap == 0
+        @hp -= dam
+    elsif dam > @ap
+        @ap = 0
+       damage(dam - @ap)
+    else
+        @ap -= dam
+    end
+  end
+
+  def encounter_floor_trap(trap)
+    damage(trap.dam)
+  end
+
+  def encounter_monster(monster)
+    damage(monster.dam)
+  end
+
+  def encounter_potion(potion)
+    @hp += potion.hp
+  end
+
+  def encounter_armor(armor)
+    @ap += armor.ap
+  end
 end
 
 class Wizard < Character
@@ -46,6 +73,29 @@ class Wizard < Character
   end
 
   ## YOUR CODE HERE
+  def is_dead?
+    @hp <= 0 or @mp < 0
+  end
+
+  def encounter_floor_trap(trap)
+    if @mp > 0
+        @mp -= 1
+    else
+        @hp -= trap.dam
+    end
+  end
+
+  def encounter_monster(monster)
+    @mp -= monster.hp
+  end
+
+  def encounter_potion(potion)
+    @mp += potion.mp
+    @hp += potion.hp
+  end
+
+  def encounter_armor(armor)
+  end
 end
 
 class FloorTrap < Encounter
@@ -60,6 +110,9 @@ class FloorTrap < Encounter
   end
 
   ## YOUR CODE HERE
+  def use_in obj
+    obj.encounter_floor_trap self  
+  end
 end
 
 class Monster < Encounter
@@ -77,6 +130,9 @@ class Monster < Encounter
   end
 
   ## YOUR CODE HERE
+  def use_in obj
+    obj.encounter_monster self
+  end
 end
 
 class Potion < Encounter
@@ -93,6 +149,9 @@ class Potion < Encounter
   end
 
   ## YOUR CODE HERE
+  def use_in obj
+    obj.encounter_potion self
+  end
 end
 
 class Armor < Encounter
@@ -108,6 +167,9 @@ class Armor < Encounter
   end
 
   ## YOUR CODE HERE
+  def use_in obj
+    obj.encounter_armor self
+  end
 end
 
 if __FILE__ == $0
